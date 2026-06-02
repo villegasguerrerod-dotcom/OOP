@@ -1,21 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.arraydata;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author Joan
- */
 public class ArrayData {
 
     public static void mainMenu(){ 
-        System.out.println("::: MAIN MENU :::\n"
-                + "[1]. Create/register users \n"
+        System.out.println("::: MENU :::\n"
+                + "[1]. Register users \n"
                 + "[2]. List users \n"
                 + "[3]. Search user \n"
                 + "[4]. Update user \n"
@@ -87,19 +79,104 @@ public class ArrayData {
                     key=data.nextLine();
                     break;
                 case 3:
-                    System.out.println("Search user");
+                    System.out.println("::: SEARCH USER :::");
+                    System.out.println("Enter identification number to search: ");
+                    key = data.nextLine();
+
+                    int found = -1;
+                    for (int j = 0; j < identNumbers.size(); j++) {
+                        if (identNumbers.get(j).equals(key)) {
+                            found = j;
+                            break;
+                        }
+                    }
+
+                    if (found == -1) {
+                        System.out.println("User not found.");
+                    } else {
+                        System.out.println("User found:");
+                        System.out.println("ID: "        + identNumbers.get(found));
+                        System.out.println("First name: " + firstNames.get(found));
+                        System.out.println("Last name: "  + lastNames.get(found));
+                        System.out.println("Email: "      + emails.get(found));
+                        System.out.println("Age: "        + ages.get(found));
+                    }
+
                     System.out.println("\nPress any key to back to main menu.");
-                    key=data.nextLine();
+                    key = data.nextLine();
                     break;
                 case 4:
-                    System.out.println("Update user");
+                    System.out.println("::: UPDATE USER :::");
+                    System.out.println("Enter identification number to update: ");
+                    key = data.nextLine();
+
+                    found = -1;
+                    for (int j = 0; j < identNumbers.size(); j++) {
+                        if (identNumbers.get(j).equals(key)) {
+                            found = j;
+                            break;
+                        }
+                    }
+
+                    if (found == -1) {
+                        System.out.println("User not found.");
+                    } else {
+                        System.out.println("Leave field empty to keep current value.");
+
+                        System.out.println("New identification number [" + identNumbers.get(found) + "]: ");
+                        String newIdent = data.nextLine();
+                        if (!newIdent.isEmpty()) identNumbers.set(found, newIdent);
+
+                        System.out.println("New first name [" + firstNames.get(found) + "]: ");
+                        String newfirstname = data.nextLine();
+                        if (!newfirstname.isEmpty()) firstNames.set(found, newfirstname);
+
+                        System.out.println("New last name [" + lastNames.get(found) + "]: ");
+                        String newLastname = data.nextLine();
+                        if (!newLastname.isEmpty()) lastNames.set(found, newLastname);
+
+                        System.out.println("New email [" + emails.get(found) + "]: ");
+                        String newEmail = data.nextLine();
+                        if (!newEmail.isEmpty()) emails.set(found, newEmail);
+
+                        System.out.println("New age [" + ages.get(found) + "] (0 to keep): ");
+                        int newAge = data.nextInt();
+                        data.nextLine();
+                        if (newAge != 0) ages.set(found, newAge);
+
+                        System.out.println("User updated successfully!");
+                    }
+
                     System.out.println("\nPress any key to back to main menu.");
-                    key=data.nextLine();
+                    key = data.nextLine();
                     break;
                 case 5:
-                    System.out.println("Delete user");
+                    System.out.println("::: DELETE USER :::");
+                    System.out.println("Enter identification number to delete: ");
+                    key = data.nextLine();
+
+                    found = -1;
+                    for (int j = 0; j < identNumbers.size(); j++) {
+                        if (identNumbers.get(j).equals(key)) {
+                            found = j;
+                            break;
+                        }
+                    }
+
+                    if (found == -1) {
+                        System.out.println("User not found.");
+                    } else {
+                        System.out.println("Deleting user: "+ firstNames.get(found) + " "+ lastNames.get(found));
+                        identNumbers.remove(found);
+                        firstNames.remove(found);
+                        lastNames.remove(found);
+                        emails.remove(found);
+                        ages.remove(found);
+                        System.out.println("User deleted successfully!");
+                    }
+
                     System.out.println("\nPress any key to back to main menu.");
-                    key=data.nextLine();
+                    key = data.nextLine();
                     break;
                 case 6:
                     System.out.println("Bye, bye");
